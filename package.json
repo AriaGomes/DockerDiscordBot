@@ -1,0 +1,18 @@
+{
+  "name": "DockerDiscordBot",
+  "version": "1.0.0",
+  "description": "Discord Bot to manipulate a docker.sock",
+  "main": "index.js",
+  "repository": "https://github.com/AriaGomes/DockerDiscordBot.git",
+  "author": "Aria Gomes <aria.gomes00@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "discord.js": "^13.3.1",
+    "dotenv": "^16.0.3"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "register": "node deploy-commands.js"
+  }
+}
