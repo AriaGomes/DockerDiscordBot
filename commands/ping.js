@@ -1,4 +1,5 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
+const { EmbedBuilder } = require('discord.js');
 const Docker = require("dockerode");
 var docker = new Docker({ socketPath: "/var/run/docker.sock" });
 
@@ -22,21 +23,17 @@ module.exports = {
     .setDescription(
       "Replies with Shard hearbeat response time and checks docker availability"
     ),
-  async execute(interaction) {
-    if (ping !== null) {
-      console.log(ping);
-    }
-
-    if (ping !== null) {
-      return interaction.reply(
-        `Error: ${ping.syscall} ${ping.code} ${ping.address} ${ping.errno}`
-      );
-    } else {
-      return interaction.reply(
-        `🏓 ${Math.round(
-          interaction.client.ws.ping
-        )}ms\nDocker socket is connected`
-      );
-    }
+	async execute(interaction) {
+		const start = Date.now();
+		const response = await docker.ping();
+		const end = Date.now();
+		const responseTime = end - start;
+	
+		const embed = new EmbedBuilder()
+		  .setTitle('Latency')
+		  .setDescription(`Response time: ${responseTime}ms\n\nDiscord API Response Time: ${interaction.client.ws.ping}ms`)
+		  .setColor('#0099ff');
+	
+		await interaction.reply({ embeds: [embed] });
   },
 };
