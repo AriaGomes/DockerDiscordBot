@@ -1,11 +1,5 @@
 FROM node:alpine
 
-ENV TOKEN null
-ENV TOKEN null
-ENV CLIENTID null
-ENV GUILDID null
-ENV ADMINUSERID null
-
 #Dev test
 RUN apk add curl
 
