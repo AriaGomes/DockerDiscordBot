@@ -1,7 +1,7 @@
 FROM node:alpine
 
 #Dev test
-RUN apk add curl
+#RUN apk add curl
 
 WORKDIR /home
 COPY ./ ./
